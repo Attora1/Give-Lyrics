@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta charset="utf-8"/>
+</head>
+<body>
+<script type="text/javascript">
+var name = "bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImxlZ2FjeS10b2tlbi1rZXkiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiI5YjRmMGFiY2NhZWY0OGFkOTBkYjgwM2Y0YTM4ODY5ZSIsInN1YiI6ImFwcF9jbGllbnRfaWRfMTMiLCJzY29wZSI6WyJ0aW1lc2VyaWVzLnpvbmVzLmYzZTFlZjI3LTk1NDMtNGI1ZS1hMTVmLTE4NmVlZWVhMzZkMy5pbmdlc3QiLCJ0aW1lc2VyaWVzLnpvbmVzLmYzZTFlZjI3LTk1NDMtNGI1ZS1hMTVmLTE4NmVlZWVhMzZkMy5xdWVyeSIsInRpbWVzZXJpZXMuem9uZXMuZjNlMWVmMjctOTU0My00YjVlLWExNWYtMTg2ZWVlZWEzNmQzLnVzZXIiLCJ1YWEucmVzb3VyY2UiLCJvcGVuaWQiLCJ1YWEubm9uZSIsInByZWRpeC1hc3NldC56b25lcy41OGE2ZmEzYy0yM2QyLTQzNWMtOWIzNy03YjVlZWQ0NDVjNjgudXNlciJdLCJjbGllbnRfaWQiOiJhcHBfY2xpZW50X2lkXzEzIiwiY2lkIjoiYXBwX2NsaWVudF9pZF8xMyIsImF6cCI6ImFwcF9jbGllbnRfaWRfMTMiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwicmV2X3NpZyI6IjEzZjdjMzgyIiwiaWF0IjoxNTAxMzM3MDA5LCJleHAiOjE1MDEzODAyMDksImlzcyI6Imh0dHBzOi8vNzdhMzg2N2ItY2NlMC00MjNkLWE4ZWMtNDQ4ZDIwNDI2OTg0LnByZWRpeC11YWEucnVuLmF3cy11c3cwMi1wci5pY2UucHJlZGl4LmlvL29hdXRoL3Rva2VuIiwiemlkIjoiNzdhMzg2N2ItY2NlMC00MjNkLWE4ZWMtNDQ4ZDIwNDI2OTg0IiwiYXVkIjpbInVhYSIsIm9wZW5pZCIsInByZWRpeC1hc3NldC56b25lcy41OGE2ZmEzYy0yM2QyLTQzNWMtOWIzNy03YjVlZWQ0NDVjNjgiLCJ0aW1lc2VyaWVzLnpvbmVzLmYzZTFlZjI3LTk1NDMtNGI1ZS1hMTVmLTE4NmVlZWVhMzZkMyIsImFwcF9jbGllbnRfaWRfMTMiXX0.q4rC14T6rmFN88pLE5OT0rBhVKzZ-AoJNaFE7o0ElOlzStoSfC8thrFZIiuLwwaSVdMG-RKzzfazRQQJCv1MNc63z-QPc-24Ql6pJA0CHsPposC0GOUxQ4LFHCJCJzlsfhm-a0Dm2PMRtVnsB7iUoF2dq4earv4Akuzl2_GqEb3rSC2nECqSZ6mGefREdBFy7qz86RjBxWm8mocwLf5loY3jX0vF8W9xtXgDmgpQ0-j3sPa88ByQN_qSxitDH1vI0KTWNgKlrvSFHGQplpSiqXHIbbbwdjWxUeVoLnjvKZy5kZkH9h5f6z_cH1Nl_2JS0PrA081aUH8KSd5PrbdLLg"   
+function CurrentGPS() {
+   var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints",
+  "method": "POST",
+  "headers": {
+    "authorization": name,
+    "predix-zone-id": "f3e1ef27-9543-4b5e-a15f-186eeeea36d3",
+    "content-type": "application/json",
+    "cache-control": "no-cache",
+    "postman-token": "85a5fa7b-e057-be81-dd70-874945782993"
+  },
+  "processData": false,
+  "data": "{\n  \"tags\": [\n    {\n      \"name\": \"car-gps2\",\n      \"order\": \"desc\"\n    }\n  ],\n  \"start\":1501276077\n\t\n}"
+}
+
+$.ajax(settings).done(function (response) {
+  var string = JSON.stringify(response);
+  var part1 = string.indexOf("[1");
+  var part2 = string.indexOf("],[");
+  var GPS = string.slice(part1 + 1 ,part2);
+  console.log(GPS);
+});
+}
+
+function HistoricalData(){
+     var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/v1/datapoints",
+  "method": "POST",
+  "headers": {
+    "authorization": name,
+    "predix-zone-id": "f3e1ef27-9543-4b5e-a15f-186eeeea36d3",
+    "content-type": "application/json",
+    "cache-control": "no-cache",
+    "postman-token": "85a5fa7b-e057-be81-dd70-874945782993"
+  },
+  "processData": false,
+  "data": "{\n  \"tags\": [\n    {\n      \"name\": \"car-gps2\",\n      \"order\": \"desc\"\n    }\n  ],\n  \"start\":1501276077\n\t\n}"
+}
+
+$.ajax(settings).done(function (response) {
+  var string = JSON.stringify(response);
+   var part1 = string.indexOf("[1");
+   var part2 = string.lastIndexOf("],");
+   var values = string.slice(part1, part2);
+   console.log(values);
+   
+  
+});
+}
+
+
+</script>
+
+<button type="submit" onclick="CurrentGPS()">Current GPS</button>
+<button type="submit" onclick="HistoricalData()">Historical Data</button>
+
+</body>
+</html>
